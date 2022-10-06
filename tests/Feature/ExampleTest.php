@@ -13,7 +13,7 @@ class ExampleTest extends TestCase
     {
         Mail::fake();
 
-        $this->get('/')->assertOk();
+        Mail::to('kristoffer@example.com')->send(new WelcomeMail());
 
         Mail::assertSent(function (WelcomeMail $mail) {
             return $mail->hasTo('kristoffer@example.com')
